@@ -31,7 +31,8 @@ WORKDIR /app/Style-Bert-VITS2
 COPY requirements.txt /app/requirements.extra.txt
 
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install "Cython<3"
+RUN pip install "Cython==0.29.36"
+RUN pip install "numpy<2"
 
 RUN grep -v -E "^(torch|torchaudio|torchvision|xformers)" requirements.txt > /tmp/requirements.no_torch.txt \
     && cat /tmp/requirements.no_torch.txt \
