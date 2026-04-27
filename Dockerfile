@@ -16,9 +16,11 @@ WORKDIR /app/Style-Bert-VITS2
 
 COPY requirements.txt /app/requirements.extra.txt
 
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
-    && pip install -r /app/requirements.extra.txt
+RUN pip install --upgrade pip
+
+RUN pip install -r requirements.txt
+
+RUN pip install -r /app/requirements.extra.txt
 
 COPY rp_handler.py /app/rp_handler.py
 COPY sbv2_client.py /app/sbv2_client.py
