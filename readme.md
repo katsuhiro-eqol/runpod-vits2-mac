@@ -12,3 +12,5 @@ chmod +x build_push.sh
       ├─ style_vectors.npy
       ├─ model.safetensors
       └─ ...
+
+buildはGit Actionでpush後自動で実行

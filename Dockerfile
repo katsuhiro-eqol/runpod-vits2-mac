@@ -1,13 +1,19 @@
 FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tokyo
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     ffmpeg \
     wget \
     curl \
     libsndfile1 \
+    build-essential \
+    tzdata \
+    && ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/litagin02/Style-Bert-VITS2.git /app/Style-Bert-VITS2
