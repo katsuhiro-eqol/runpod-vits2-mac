@@ -24,7 +24,9 @@ COPY requirements.txt /app/requirements.extra.txt
 
 RUN pip install --upgrade pip
 
-RUN pip install -r requirements.txt
+RUN grep -v -E "^(torch|torchaudio|torchvision|xformers)" requirements.txt > /tmp/requirements.no_torch.txt \
+    && cat /tmp/requirements.no_torch.txt \
+    && pip install --no-cache-dir -r /tmp/requirements.no_torch.txt
 
 RUN pip install -r /app/requirements.extra.txt
 
