@@ -51,9 +51,9 @@ RUN pip install --no-cache-dir \
     "networkx==3.2.1" \
     "accelerate==0.27.2"
 
-RUN grep -v -E "^(torch|torchaudio|torchvision|xformers)" requirements.txt > /tmp/requirements.no_torch.txt \
-    && cat /tmp/requirements.no_torch.txt \
-    && pip install --no-cache-dir -r /tmp/requirements.no_torch.txt
+    RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|openai-whisper|faster-whisper|whisper|gradio)" requirements.txt > /tmp/requirements.infer.txt \
+    && cat /tmp/requirements.infer.txt \
+    && pip install --no-cache-dir -r /tmp/requirements.infer.txt
 
 RUN pip install -r /app/requirements.extra.txt
 
