@@ -31,11 +31,14 @@ WORKDIR /app/Style-Bert-VITS2
 COPY requirements.txt /app/requirements.extra.txt
 
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install "Cython==0.29.36"
-RUN pip install "numpy<2"
+RUN pip install "Cython==0.29.36" "numpy==1.23.5"
 
 RUN echo "Cython<3" > /tmp/constraints.txt
 ENV PIP_CONSTRAINT=/tmp/constraints.txt
+
+RUN pip install --no-cache-dir \
+    "numba==0.57.1" \
+    "llvmlite==0.40.1"
 
 RUN grep -v -E "^(torch|torchaudio|torchvision|xformers)" requirements.txt > /tmp/requirements.no_torch.txt \
     && cat /tmp/requirements.no_torch.txt \
