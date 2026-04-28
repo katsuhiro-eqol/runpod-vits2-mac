@@ -39,6 +39,9 @@ numba==0.57.1
 llvmlite==0.40.1
 networkx==3.2.1
 accelerate==0.27.2
+more-itertools==10.2.0
+openai-whisper==20231117
+stable-ts==2.19.1
 EOF
 
 ENV PIP_CONSTRAINT=/tmp/constraints.txt
