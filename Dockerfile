@@ -39,6 +39,8 @@ numba==0.57.1
 llvmlite==0.40.1
 networkx==3.2.1
 accelerate==0.27.2
+more-itertools==10.2.0
+inflect==6.0.5
 EOF
 
 ENV PIP_CONSTRAINT=/tmp/constraints.txt
@@ -50,10 +52,12 @@ RUN pip install --no-cache-dir \
     "numba==0.57.1" \
     "networkx==3.2.1" \
     "accelerate==0.27.2"
+        "more-itertools==10.2.0" \
+    "inflect==6.0.5"
 
-    RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|stable_ts|openai-whisper|faster-whisper|faster_whisper|whisper|gradio)" requirements.txt > /tmp/requirements.infer.txt \
-    && cat /tmp/requirements.infer.txt \
-    && pip install --no-cache-dir -r /tmp/requirements.infer.txt
+RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|stable_ts|openai-whisper|faster-whisper|faster_whisper|whisper|gradio)" requirements.txt > /tmp/requirements.infer.txt \
+&& cat /tmp/requirements.infer.txt \
+&& pip install --no-cache-dir -r /tmp/requirements.infer.txt
 
 RUN pip install -r /app/requirements.extra.txt
 
