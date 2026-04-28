@@ -55,7 +55,7 @@ RUN pip install --no-cache-dir \
     "more-itertools==10.2.0" \
     "inflect==6.0.5"
 
-RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|stable_ts|openai-whisper|faster-whisper|faster_whisper|whisper|gradio)" requirements.txt > /tmp/requirements.infer.txt \
+RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|stable_ts|openai-whisper|faster-whisper|faster_whisper|whisper|gradio|pyannote.audio|pyannote-audio|matplotlib|seaborn)" requirements.txt > /tmp/requirements.infer.txt \
 && cat /tmp/requirements.infer.txt \
 && pip install --no-cache-dir -r /tmp/requirements.infer.txt
 
