@@ -51,8 +51,8 @@ RUN pip install --no-cache-dir \
     "llvmlite==0.40.1" \
     "numba==0.57.1" \
     "networkx==3.2.1" \
-    "accelerate==0.27.2"
-        "more-itertools==10.2.0" \
+    "accelerate==0.27.2" \
+    "more-itertools==10.2.0" \
     "inflect==6.0.5"
 
 RUN grep -v -E "^(torch|torchaudio|torchvision|xformers|stable-ts|stable_ts|openai-whisper|faster-whisper|faster_whisper|whisper|gradio)" requirements.txt > /tmp/requirements.infer.txt \
