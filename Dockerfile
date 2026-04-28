@@ -34,6 +34,9 @@ RUN pip install --upgrade pip setuptools wheel
 RUN pip install "Cython==0.29.36"
 RUN pip install "numpy<2"
 
+RUN echo "Cython<3" > /tmp/constraints.txt
+ENV PIP_CONSTRAINT=/tmp/constraints.txt
+
 RUN grep -v -E "^(torch|torchaudio|torchvision|xformers)" requirements.txt > /tmp/requirements.no_torch.txt \
     && cat /tmp/requirements.no_torch.txt \
     && pip install --no-cache-dir -r /tmp/requirements.no_torch.txt
